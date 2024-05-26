@@ -1,0 +1,58 @@
+.container {
+  justify-content: center;
+}
+
+.dashboard-item {
+  margin-bottom: 10px;
+  padding: 5px;
+  margin-left: 1%;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+.dashboard-item:hover {
+  transform: translateY(-5px);
+  background-color: rgb(21, 46, 46);
+  cursor: pointer;
+}
+
+.dashboard-item h2 {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.dashboard-item p {
+  margin: 0;
+  font-size: 20px;
+}
+
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.detail-column {
+  font-size: xx-small;
+  text-align: center;
+}
+
+.detail-column p {
+  font-size: 15px;
+  margin: 0;
+}
+
+.divider {
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 10px;
+  border: 1px solid #ffffff;
+}
+
+span.l_wk {
+  font-size: 12px;
+}
+
+span.amnt {
+  font-size: 10px;
+}

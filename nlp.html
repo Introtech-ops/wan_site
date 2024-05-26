@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Title</title>
+</head>
+<body>
+	<script type="text/javascript" src="tf.min.js"></script>
+	<script type="text/javascript">
+		var sentences = ["I love my dog", "I love my car", "The wheather is just perfect"];
+		var test = ["I love my phone", "The wheather is just perfect", "I love my car"];
+
+		var tokens = Tokenizer(sentences);
+		tokens.push("00v");
+		var word_index = Indexes(tokens);
+		var sequences = Sequences(test, word_index);
+		var padded = Padding(sequences);
+		console.log(padded);
+
+		const model = tf.sequential();
+		model.add(tf.layers.embedding({ inputDim: tokens.length, outputDim: 64 }));
+		/*model.add(tf.layers.bidirectional(tf.layers.lstm({ units: 64 })));
+		model.add(tf.layers.dense({ units: 64, activation: 'relu' }));
+		model.add(tf.layers.dense({ units: 1, activation: 'sigmoid' }));*/
+
+		console.log(model;
+
+		function Tokenizer(arr){
+			var t = [];
+
+			let stcs = "";
+
+			for(let i = 0; i < arr.length; i++){
+				stcs += arr[i] + " ";
+			}
+
+			const words = stcs.split(" ");
+
+			for (let i = 0; i < words.length; i++) {
+				const word = words[i].toLowerCase(); // Convert to lowercase for case-insensitive comparison
+
+				// Check if the word is already present in the unique words array
+				if (!t.includes(word)) {
+					t.push(word);
+				}
+			}
+
+			return t;
+		}
+
+		function Indexes(arr){
+			var t = {};
+
+			for(let i = 0; i < arr.length; i++){
+				t[arr[i]] = i + 1;
+			}
+
+			return t;
+		}
+
+		function Sequences(arr, word_index){
+			sq = [];
+
+			for(let i = 0; i < arr.length; i++){
+				sq.push(arr[i].split(' '));
+			}
+
+			sequence = [];
+
+			for(let i = 0; i < sq.length; i++){
+
+				let temp = [];
+
+				for(let j = 0; j < sq[i].length; j++){
+					if (word_index.hasOwnProperty(sq[i][j].toLowerCase())) {
+						temp.push(word_index[sq[i][j].toLowerCase()]);
+					}else{
+						temp.push(word_index["00v"]);
+					}
+				}
+
+				sequence.push(temp);
+			}
+
+
+
+			return sequence;
+		}
+
+		function Padding(arr){
+			var p = [];
+
+			for(let i = 0; i < arr.length; i++){
+				for(let j = 0; j < arr[i].length; j++){
+					const copiedArr = arr[i].slice(0, j + 1);
+					p.push(copiedArr);
+				}
+			}
+
+			arr_length = 0;
+
+			for(let i = 0; i < p.length; i++){
+				if(p[i].length > arr_length){
+					arr_length = p[i].length;
+				}
+			}
+
+			for(let i = 0; i < p.length; i++){
+				
+				while(p[i].length < arr_length){
+					p[i].unshift(0);
+				}
+			}
+
+			return p;
+		}
+	</script>
+</body>
+</html>
