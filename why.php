@@ -8,12 +8,12 @@
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  <meta name="keywords" content="WAN" />
+  <meta name="description" content="WAN: Financial Harmony, Community Prosperity." />
+  <meta name="author" content="Introtech" />
   <link rel="shortcut icon" href="images/favicon.png" type="">
 
-  <title> Fintech </title>
+  <title> WAN </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
