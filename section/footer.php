@@ -7,25 +7,25 @@
         <div class="col-md-6 col-lg-3 info_col">
           <div class="info_contact">
             <h4>
-              Address
+              ADDRESS
             </h4>
             <div class="contact_link_box">
               <a href="">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <span>
-                  Location
+                  1724,Kisumu.
                 </span>
               </a>
-              <a href="">
+              <a href="tel:+254727964903">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call +01 1234567890
+                  +254 727 964 903
                 </span>
               </a>
-              <a href="">
+              <a href="mailto:info@wan.co.ke">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  info@mail.com
+                  info@wan.co.ke
                 </span>
               </a>
             </div>
@@ -45,20 +45,10 @@
             </a>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3 info_col">
-          <div class="info_detail">
-            <h4>
-              Info
-            </h4>
-            <p>
-              necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
-            </p>
-          </div>
-        </div>
         <div class="col-md-6 col-lg-2 mx-auto info_col">
           <div class="info_link_box">
-            <h4>
-              Links
+            <h4 class='fw-bolder'>
+              LINKS
             </h4>
             <div class="info_links">
               <a class="active" href="index.php">
@@ -80,15 +70,30 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-3 info_col ">
-          <h4>
-            Subscribe
-          </h4>
-          <form action="#">
-            <input type="text" placeholder="Enter email" />
-            <button type="submit">
-              Subscribe
-            </button>
-          </form>
+            <h4>
+                SUBSCRIBE
+            </h4>
+            <form action="" method="POST">
+                <input type="text" placeholder="Enter email, ONLY get tailored updates." name="sub_mail"/>
+                <button type="submit" name="submit_email">
+                  Subscribe
+                </button>
+            </form>
+            <?php
+                if(isset($_POST['submit_email'])){
+                    $email = $_POST['sub_mail'];
+                    if(empty($email)){
+                        echo "Fill the required input!";
+                        return;
+                    }
+                    
+                    $stmt = $conn->prepare("INSERT INTO subscription (email, created_at) VALUES (?, NOW())");
+                    $stmt->bind_param("s", $email);
+                    $stmt->execute();
+                    $stmt->close();
+                    $conn->close();
+                }
+            ?>
         </div>
       </div>
     </div>
