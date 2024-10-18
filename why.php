@@ -95,7 +95,7 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Why Choose <span>Us</span>
+          Why <span>Us</span>
         </h2>
       </div>
       <div class="why_container">
